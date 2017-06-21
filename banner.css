@@ -1,0 +1,30 @@
+.banner{
+    position:relative;
+    width:100%; height: 56vw;
+}
+.banner_img{
+    position:relative;
+    width:100%; height: 56vw;
+    overflow:hidden;
+}
+.banner_img>li{
+    position:absolute; top:0; z-index:1;
+    width:100%; height: 56vw;
+}
+
+.banner_img img{
+    width:100%; height: 56vw;
+}
+.banner_select{
+    position:absolute; bottom:2.666vw;  z-index:2;
+}
+.banner_select>li{
+    display:inline-block;
+    margin: 0 1.333vw;
+    width: 3.2vw; height:0.533vw;
+    background:#ccc;
+    border-radius:0.533vw;
+}
+.banner_select>li.on{
+    background:#fff;
+}
