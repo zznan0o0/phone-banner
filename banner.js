@@ -68,6 +68,14 @@ Banner.prototype = {
             var speed = left / 10;
             speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
             var surplus = left - speed;
+
+            left -= speed;
+
+            _this.banner_img.each(function () {
+                var leftNow = parseInt($(this).css('left'));
+                $(this).css('left', leftNow - speed + 'px');
+            })
+            
             if (surplus > 0 && surplus <= 1 || surplus < 0 && surplus >= -1) {
                 _this.initImgItem(index);
                 clearInterval(_this.timer);
@@ -76,13 +84,6 @@ Banner.prototype = {
                 _this.isAnimate = true;
                 fn && fn();
             }
-
-            left -= speed;
-
-            _this.banner_img.each(function () {
-                var leftNow = parseInt($(this).css('left'));
-                $(this).css('left', leftNow - speed + 'px');
-            })
         }, 16);
     },
 
@@ -119,8 +120,8 @@ Banner.prototype = {
 
     touch: function () {
         var _this = this;
-
         this.bannerElm.on('touchstart', function (e) {
+            e.preventDefault();
             if (_this.isAnimate) {
                 _this.isTouch = true;
                 _this.start = e.originalEvent.changedTouches[0].clientX;
@@ -128,6 +129,7 @@ Banner.prototype = {
         });
 
         this.bannerElm.on('touchmove', function (e) {
+            e.preventDefault();
             if (_this.isTouch && _this.isAnimate) {
                 var index = _this.getIndex();
 
@@ -173,6 +175,7 @@ Banner.prototype = {
         });
 
         this.bannerElm.on('touchend', function (e) {
+            e.preventDefault();
             if (_this.isTouch && _this.isAnimate) {
                 _this.isTouch = false;
 
